@@ -7,7 +7,7 @@ const Timer = (props) => {
     return (
         <div>
             <p> Timer says date is:  { currentDate} </p>
-        
+            
         </div>
     
     
