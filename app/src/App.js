@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
         <header className="App-header">
-
+        <h2> FC updated </h2>
         <Timer />    
 
         <img src={logo} className="App-logo" alt="logo" />
