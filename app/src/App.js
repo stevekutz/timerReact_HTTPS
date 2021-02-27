@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 
 import Timer from './comp/Timer';
-import TimerC from './comp/TimerC';
 
 function App() {
   return (
@@ -11,12 +9,6 @@ function App() {
         <h2> FC updated </h2>
         <Timer />    
 
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-
-        <TimerC/>
       </header>
     </div>
   );
