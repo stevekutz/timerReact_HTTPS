@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import TimerDisplay from './TimerDisplay';
 
 
 const Timer = (props) => {
@@ -91,6 +91,16 @@ const Timer = (props) => {
 
 
         <div>
+            <TimerDisplay 
+                min_tens = "5"
+                min_ones = "8"
+                colon = ":"
+                sec_tens = "4"
+                sec_ones = "7"
+            
+            
+            
+            />
             <p> Direct call to date is:  {currentDate} </p>
             <p> Date with seconds count : {secondsDateCount} </p>
             <div>
@@ -110,4 +120,4 @@ const Timer = (props) => {
 
 }
 
-export default Timer
+export default Timer;
