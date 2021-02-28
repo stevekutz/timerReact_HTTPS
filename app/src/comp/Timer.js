@@ -37,8 +37,14 @@ const Timer = (props) => {
         setTimerActive(false);
         setSecondsCount(0);
 
-    
+        console.log("Reset FIRED")
     }
+
+    // const getSecondsCount = () => {
+    //     return secondsCount;
+    
+    // }
+
 
     // useEffect
     // similar to mix of componentDidMount + componentDidUpdate + componentWillUnmount
@@ -65,7 +71,7 @@ const Timer = (props) => {
         if(timerActive) {
             const timer = setInterval(
                 () => {setSecondsCount(secondsCount + 1)}
-            , 250)
+            , 100)
 
             setTimerStartStop('Stop');   
             // cancels operation of timer, this allows single increment else this starts count up from 0
@@ -87,16 +93,17 @@ const Timer = (props) => {
     })    
 
 
+
     return (
 
 
         <div>
             <TimerDisplay 
-                min_tens = "5"
-                min_ones = "8"
-                colon = ":"
-                sec_tens = "4"
-                sec_ones = "7"
+                // min_tens = "5"
+                // min_ones = "8"
+                // colon = ":"
+                // sec_tens = "4"
+                // sec_ones = "7"
                 secondsCount = {secondsCount}    
             
             
