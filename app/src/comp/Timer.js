@@ -65,7 +65,7 @@ const Timer = (props) => {
         if(timerActive) {
             const timer = setInterval(
                 () => {setSecondsCount(secondsCount + 1)}
-            , 1000)
+            , 250)
 
             setTimerStartStop('Stop');   
             // cancels operation of timer, this allows single increment else this starts count up from 0
