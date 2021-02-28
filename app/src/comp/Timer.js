@@ -97,7 +97,7 @@ const Timer = (props) => {
                 colon = ":"
                 sec_tens = "4"
                 sec_ones = "7"
-            
+                secondsCount = {secondsCount}    
             
             
             />

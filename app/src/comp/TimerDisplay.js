@@ -10,6 +10,11 @@ import {
 
 const TimerDisplay = (props) => {
 
+
+    console.log("Inside TimerDisplay", typeof(props.secondsCount));
+
+
+
     return (
             <DisplayContainerDiv>
                 <DisplayDigitContainerDiv>
