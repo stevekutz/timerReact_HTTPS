@@ -16,7 +16,7 @@ const Timer = (props) => {
     const [timerActive, setTimerActive] = useState(false);
     const [timerStartStop, setTimerStartStop] = useState('Start');
 
-    const [timerDirection, setTimerDirection] = useState('up');
+    // const [timerDirection, setTimerDirection] = useState('up');
     // const [ timeCount, setTimeCount] = useState(new Date());
 
     // const countTime = (dir) => {
@@ -34,7 +34,7 @@ const Timer = (props) => {
     }
 
     const resetTimer = () => {
-        toggleTimer();
+        setTimerActive(false);
         setSecondsCount(0);
 
     
