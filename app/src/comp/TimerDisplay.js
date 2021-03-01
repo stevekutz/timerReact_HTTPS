@@ -22,7 +22,7 @@ const TimerDisplay = (props) => {
 
 
     const [secDigits, setSecDigits] = useState('00');
-
+    const [minDigits, setMinDigits] = useState('00');
 
 
     // console.log("Inside TimerDisplay", typeof(props.secondsCount));
@@ -39,7 +39,7 @@ const TimerDisplay = (props) => {
         // const handleDigits = (numStr) => {
         //     console.log(">>> inside handelDigits >>>  ", numStr);
 
-        //     if (numStr === '0' || numStr === '00') {
+        //     if (numStr === 0) {
         //         setSecDigits('00');
         //     } else if (numStr <= '9') {
         //         setSecDigits('0' + numStr);
@@ -54,16 +54,32 @@ const TimerDisplay = (props) => {
             // handleDigits(stringNum);
             if (stringNum === 0) {
                 setSecDigits('00');
+                setMinDigits('00');
             } else if (stringNum <= 9) {
                 setSecDigits('0' + stringNum);
             } else if (stringNum <= 59) {
                 setSecDigits(stringNum);
             }
         } else if (stringNum >= '60') {
-            
+            setMinCount(Math.floor(stringNum / 60))
+            setJustSeconds((props.secondsCount -  minCount * 60));
 
+            if (justSeconds === 0) {
+                setSecDigits('00');
+            } else if (justSeconds <= 9) {
+                setSecDigits('0' + justSeconds);
+            } else if (justSeconds <= 59) {
+                setSecDigits(justSeconds)
+            }
 
-                setSecDigits(stringNum);
+            if (minCount <=9) {
+                setMinDigits('0' + minCount.toString())
+            } else if (minCount <= 59) {
+                setMinDigits(minCount)
+            } else {
+                console.log("*** Over an HOUR ***")
+            }
+
         }
     
 
@@ -123,7 +139,7 @@ const TimerDisplay = (props) => {
     return (
             <DisplayContainerDiv>
                 <DisplayDigitContainerDiv>
-                    <DisplayDigitText> {min_Ones} </DisplayDigitText>
+                    <DisplayDigitText> {minDigits} </DisplayDigitText>
                     <DisplayColonDiv> {colonText} </DisplayColonDiv>
                     <DisplayDigitText> {secDigits} </DisplayDigitText>
                 
@@ -147,3 +163,10 @@ export default TimerDisplay;
     <DisplayDigitText> {sec_Tens} </DisplayDigitText>
     <DisplayDigitText> {sec_Ones} </DisplayDigitText>
 */    
+
+
+/*
+    <DisplayDigitText> {minDigits} </DisplayDigitText>
+    <DisplayColonDiv> {colonText} </DisplayColonDiv>
+    <DisplayDigitText> {secDigits} </DisplayDigitText>
+*/
