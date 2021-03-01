@@ -20,6 +20,11 @@ const TimerDisplay = (props) => {
     const [justSeconds, setJustSeconds] = useState('0');
     const [minCount, setMinCount] = useState('0');
 
+
+    const [secDigits, setSecDigits] = useState('00');
+
+
+
     // console.log("Inside TimerDisplay", typeof(props.secondsCount));
 
 
@@ -31,41 +36,85 @@ const TimerDisplay = (props) => {
 
         // let justSeconds = 0;
 
-        if (props.secondsCount === 0) {
-            setMinCount('0');
-            setSec_Ones('0')
-            console.log("should reset minutes here");
-        }
+        // const handleDigits = (numStr) => {
+        //     console.log(">>> inside handelDigits >>>  ", numStr);
 
-        // findSeconds(timeVal) {
-        //     if 
-        
+        //     if (numStr === '0' || numStr === '00') {
+        //         setSecDigits('00');
+        //     } else if (numStr <= '9') {
+        //         setSecDigits('0' + numStr);
+        //     }
+        // }    
+
+
+
+
+        if (stringNum <= 59) {
+            console.log("inside if ", stringNum);
+            // handleDigits(stringNum);
+            if (stringNum === 0) {
+                setSecDigits('00');
+            } else if (stringNum <= 9) {
+                setSecDigits('0' + stringNum);
+            } else if (stringNum <= 59) {
+                setSecDigits(stringNum);
+            }
+        } else if (stringNum >= '60') {
+            
+
+
+                setSecDigits(stringNum);
+        }
+    
+
+
+
+        // if (props.secondsCount === 0) {
+        //     setMinCount('0');
+        //     setSec_Ones('0')
+        //     console.log("should reset minutes here");
         // }
 
-        // seconds_Ones
-        setSec_Ones(stringNum.slice(-1))
+        // // findSeconds(timeVal) {
+        // //     if 
+        
+        // // }
 
-        if (stringNum < 10) {
-            setSec_Tens('0');
-            setMin_Ones('0');
-            setMin_Tens('0');
-        }
-        else if(stringNum >= 10 && stringNum <= 59) {
-            setSec_Tens(stringNum.slice(-2, 1));         
-        } else if(stringNum >=60 && stringNum <= 3599) {
+        // // seconds_Ones
+        // setSec_Ones(stringNum.slice(-1))
+
+        // if (stringNum < 10) {
+        //     setSec_Tens('0');
+        //     setMin_Ones('0');
+        //     setMin_Tens('0');
+        // }
+        // else if(stringNum >= 10 && stringNum <= 59) {
+        //     setSec_Tens(stringNum.slice(-2, 1));         
+        // } else if(stringNum >=60 && stringNum <= 3599) {
             
-            setMinCount(Math.floor(stringNum / 60).toString()); // try as STRING
-            setMin_Ones(minCount);
+        //     setMinCount(Math.floor(stringNum / 60).toString()); // try as STRING
+        //     setMin_Ones(minCount);
             
-            setJustSeconds((props.secondsCount -  minCount * 60).toString());
-            if (justSeconds < 10) {
-                setSec_Tens('0');
-            }
-            else if(justSeconds >= 10 && justSeconds <= 59) {
-                setSec_Tens(justSeconds.slice(-2, 1)); 
-            }
+        //     if(minCount >= 10 && stringNum <=59) {
+        //         // set() //  manage minutes settings here
+        //     }
+
+        //     setJustSeconds((props.secondsCount -  minCount * 60).toString());
             
-        }
+        //     if (justSeconds < 10) {
+        //         setSec_Tens('0');
+        //     }
+        //     else if(justSeconds >= 10 && justSeconds <= 59) {
+        //         setSec_Tens(justSeconds.slice(-2, 1)); 
+        //     }
+        
+        // } else {
+        //     console.log("we hit 1 hour ")
+        // }    
+
+
+            
+        
 
     
     } , [minCount, props.secondsCount])
@@ -74,11 +123,9 @@ const TimerDisplay = (props) => {
     return (
             <DisplayContainerDiv>
                 <DisplayDigitContainerDiv>
-                    <DisplayDigitText> {min_Tens} </DisplayDigitText>
                     <DisplayDigitText> {min_Ones} </DisplayDigitText>
                     <DisplayColonDiv> {colonText} </DisplayColonDiv>
-                    <DisplayDigitText> {sec_Tens} </DisplayDigitText>
-                    <DisplayDigitText> {sec_Ones} </DisplayDigitText>
+                    <DisplayDigitText> {secDigits} </DisplayDigitText>
                 
                 
                 </DisplayDigitContainerDiv>
@@ -93,3 +140,10 @@ const TimerDisplay = (props) => {
 
 
 export default TimerDisplay;
+/*
+    <DisplayDigitText> {min_Tens} </DisplayDigitText>
+    <DisplayDigitText> {min_Ones} </DisplayDigitText>
+    <DisplayColonDiv> {colonText} </DisplayColonDiv>
+    <DisplayDigitText> {sec_Tens} </DisplayDigitText>
+    <DisplayDigitText> {sec_Ones} </DisplayDigitText>
+*/    
