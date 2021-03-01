@@ -49,36 +49,33 @@ const TimerDisplay = (props) => {
 
 
 
-        if (stringNum <= 59) {
-            console.log("inside if ", stringNum);
-            // handleDigits(stringNum);
-            if (stringNum === 0) {
-                setSecDigits('00');
-                setMinDigits('00');
-            } else if (stringNum <= 9) {
-                setSecDigits('0' + stringNum);
-            } else if (stringNum <= 59) {
-                setSecDigits(stringNum);
-            }
-        } else if (stringNum >= '60') {
-            setMinCount(Math.floor(stringNum / 60))
-            setJustSeconds((props.secondsCount -  minCount * 60));
-
-            if (justSeconds === 0) {
-                setSecDigits('00');
-            } else if (justSeconds <= 9) {
-                setSecDigits('0' + justSeconds);
-            } else if (justSeconds <= 59) {
-                setSecDigits(justSeconds)
-            }
+        if (stringNum === 0) {
+            setSecDigits('00');
+            setMinDigits('00');
+            setMinCount(0);
+        } else if (stringNum <= 9) {
+            setSecDigits('0' + stringNum);
+        } else if (stringNum <= 59) {
+            setSecDigits(stringNum);
+        } else if (stringNum >= 60) {
+            setMinCount(Math.floor(stringNum / 60).toString());
 
             if (minCount <=9) {
                 setMinDigits('0' + minCount.toString())
-            } else if (minCount <= 59) {
+            } else if (minCount >= 10) {
                 setMinDigits(minCount)
             } else {
                 console.log("*** Over an HOUR ***")
             }
+
+            setJustSeconds((props.secondsCount -  minCount * 60).toString());
+
+            if (justSeconds < 10) {
+                setSecDigits('0' + justSeconds);
+            } else if (justSeconds >= 10 && justSeconds <= 59) {
+                setSecDigits(justSeconds)
+            }
+
 
         }
     
@@ -133,7 +130,7 @@ const TimerDisplay = (props) => {
         
 
     
-    } , [minCount, props.secondsCount])
+    } , [minCount, justSeconds, props.secondsCount])
 
 
     return (
