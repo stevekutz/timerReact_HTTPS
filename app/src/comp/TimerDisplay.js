@@ -18,7 +18,7 @@ const TimerDisplay = (props) => {
     const [sec_Tens, setSec_Tens] = useState('0');
 
     const [justSeconds, setJustSeconds] = useState('0');
-    const [minCount, setMinCount] = useState('0');
+    const [minCount, setMinCount] = useState(0);
 
 
     const [secDigits, setSecDigits] = useState('00');
@@ -55,6 +55,7 @@ const TimerDisplay = (props) => {
             setMinCount(0);
         } else if (stringNum <= 9) {
             setSecDigits('0' + stringNum);
+            setMinDigits('00');  // resolves reset issue
         } else if (stringNum <= 59) {
             setSecDigits(stringNum);
         } else if (stringNum >= 60) {
