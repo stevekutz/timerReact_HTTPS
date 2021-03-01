@@ -41,6 +41,7 @@ const TimerDisplay = (props) => {
 
         //     if (numStr === 0) {
         //         setSecDigits('00');
+        //         setMinDigits 
         //     } else if (numStr <= '9') {
         //         setSecDigits('0' + numStr);
         //     }
@@ -48,22 +49,24 @@ const TimerDisplay = (props) => {
 
 
 
-
-        if (stringNum === 0) {
+        if (Number(stringNum) < 0 ) {
+            console.log("COUNT below ZERO");
+        } else if (stringNum === 0) {
             setSecDigits('00');
-            setMinDigits('00');
-            setMinCount(0);
-        } else if (stringNum <= 9) {
+            // setMinDigits('00');  // no effect on minute reset issue
+            // setMinCount(0);
+        } else if (stringNum >= 0 && stringNum < 10) {
             setSecDigits('0' + stringNum);
             setMinDigits('00');  // resolves reset issue
-        } else if (stringNum <= 59) {
+            setMinCount(0);
+        } else if (stringNum >= 10 && stringNum <= 59) {
             setSecDigits(stringNum);
-        } else if (stringNum >= 60) {
+        } else if (stringNum >= 60 && stringNum <= 3599) {
             setMinCount(Math.floor(stringNum / 60).toString());
 
-            if (minCount <=9) {
+            if ( minCount >= 1 && minCount < 10) {
                 setMinDigits('0' + minCount.toString())
-            } else if (minCount >= 10) {
+            } else if (minCount >= 10 && minCount <= 59) {
                 setMinDigits(minCount)
             } else {
                 console.log("*** Over an HOUR ***")
